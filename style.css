@@ -1,0 +1,244 @@
+/* General Styles */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Oswald", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  perspective: 1000px;
+}
+
+/* Cube Animations */
+.cube {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #4e54c8, #8f94fb);
+  color: #fff;
+  font-size: 3em;
+  transform-style: preserve-3d;
+}
+
+.cube span {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  transform: rotateY(calc(var(--i, 0) * 90deg));
+}
+
+.last-cube {
+  cursor: pointer;
+  animation: changeNumber 2s linear infinite paused;
+}
+
+.last-cube span:first-child {
+  transform: rotateY(0deg);
+}
+
+.last-cube span:last-child {
+  transform: rotateY(180deg);
+}
+
+@keyframes changeNumber {
+  0%, 50% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+/* Fireworks */
+.fireworks-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.big-firework {
+  z-index: -1;
+  background: radial-gradient(circle, #ff0, transparent 70%);
+  animation: explodeBig 2s ease-out forwards;
+}
+
+.firework {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(circle, #ff0, transparent);
+  border-radius: 50%;
+  opacity: 0;
+  animation: explode 12s infinite ease-in-out;
+}
+
+@keyframes explodeBig {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(10);
+    opacity: 0;
+  }
+}
+
+@keyframes explode {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(10);
+    opacity: 0;
+  }
+}
+
+/* Cat Animation */
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(180deg, transparent, #228b22);
+  overflow: hidden;
+}
+
+.grass {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+  background: #32cd32;
+  box-shadow: 0 0 20px #32cd32, 0 0 50px #32cd32;
+}
+
+.cat {
+  position: absolute;
+  bottom: 30px;
+  left: -100px;
+  display: flex;
+  align-items: center;
+  animation: run 20s linear infinite paused;
+}
+
+.cat .body {
+  width: 50px;
+  height: 30px;
+  background: #ff4500;
+  border-radius: 15px;
+  position: relative;
+}
+
+.cat .tail {
+  width: 20px;
+  height: 5px;
+  background: #ff4500;
+  position: absolute;
+  top: 10px;
+  left: -20px;
+  border-radius: 50%;
+  animation: wag 0.5s infinite;
+}
+
+.cat .legs {
+  position: absolute;
+  bottom: -10px;
+  display: flex;
+  gap: 10px;
+}
+
+.cat .legs .leg {
+  width: 10px;
+  height: 15px;
+  background: #ff4500;
+  border-radius: 5px;
+}
+
+.cat .hand {
+  position: absolute;
+  top: -5px;
+  left: 40px;
+  width: 10px;
+  height: 20px;
+  background: #ff4500;
+  border-radius: 5px;
+  transform-origin: top;
+  transform: rotate(0deg);
+  animation: wave 2s infinite alternate paused;
+}
+
+.cat .speech-bubble {
+  position: absolute;
+  top: -40px;
+  left: 60px;
+  width: 80px;
+  height: 30px;
+  background: white;
+  border-radius: 15px;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(-30deg);
+  }
+  100% {
+    transform: rotate(30deg);
+  }
+}
+
+@keyframes run {
+  0% {
+    left: -100px;
+  }
+  50% {
+    left: 50%;
+  }
+  100% {
+    left: 110%;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
